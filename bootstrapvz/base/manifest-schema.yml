@@ -58,6 +58,8 @@ properties:
       locale: {type: string}
       release: {type: string}
       timezone: {type: string}
+      boottype:
+        enum: [bios, efi]
     required:
       - release
       - architecture

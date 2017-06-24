@@ -10,7 +10,7 @@ class MSDOSPartitionMap(AbstractPartitionMap):
     Sometimes also called MBR (but that confuses the hell out of me, so ms-dos it is)
     """
 
-    def __init__(self, data, sector_size, bootloader):
+    def __init__(self, data, sector_size, bootloader, boottype):
         """
         :param dict data: volume.partitions part of the manifest
         :param int sector_size: Sectorsize of the volume

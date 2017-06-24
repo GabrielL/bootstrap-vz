@@ -1,6 +1,6 @@
 
 
-def load_volume(data, bootloader):
+def load_volume(data, bootloader, boottype):
     """Instantiates a volume that corresponds to the data in the manifest
 
     :param dict data: The 'volume' section from the manifest
@@ -43,7 +43,7 @@ def load_volume(data, bootloader):
     # Only operate with a physical sector size of 512 bytes for now,
     # not sure if we can change that for some of the virtual disks
     sector_size = Bytes('512B')
-    partition_map = partition_map(data['partitions'], sector_size, bootloader)
+    partition_map = partition_map(data['partitions'], sector_size, bootloader, boottype)
 
     # Create the volume with the partition map as an argument
     return volume_backing(partition_map)

@@ -8,7 +8,7 @@ class GPTPartitionMap(AbstractPartitionMap):
     """Represents a GPT partition map
     """
 
-    def __init__(self, data, sector_size, bootloader):
+    def __init__(self, data, sector_size, bootloader, boottype):
         """
         :param dict data: volume.partitions part of the manifest
         :param int sector_size: Sectorsize of the volume

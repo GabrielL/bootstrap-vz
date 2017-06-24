@@ -26,7 +26,7 @@ class BootstrapInformation(object):
 
         # Load all the volume information
         from fs import load_volume
-        self.volume = load_volume(self.manifest.volume, manifest.system['bootloader'])
+        self.volume = load_volume(self.manifest.volume, manifest.system['bootloader'], manifest.system['boottype'])
 
         # The default apt mirror
         self.apt_mirror = self.manifest.packages.get('mirror', 'http://deb.debian.org/debian/')
