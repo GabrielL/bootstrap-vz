@@ -74,7 +74,9 @@ class GPTPartitionMap(AbstractPartitionMap):
                 setattr(self, partition, part_tmp)
                 self.partitions.append(part_tmp)
 
-        if hasattr(self, 'grub_boot'):
+        if boottype == 'efi':
+            getattr(self, 'boot', self.root).flags.append('boot')
+        elif hasattr(self, 'grub_boot'):
             # Mark the grub partition as a bios_grub partition
             self.grub_boot.flags.append('bios_grub')
             # Subtract the grub partition size from the subsequent partition

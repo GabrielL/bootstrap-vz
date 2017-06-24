@@ -14,7 +14,10 @@ class AddGrubPackage(Task):
 
     @classmethod
     def run(cls, info):
-        info.packages.add('grub-pc')
+        if info.manifest.system['boottype'] == 'efi':
+            info.packages.add('grub-efi')
+        else:
+            info.packages.add('grub-pc')
 
 
 class InitGrubConfig(Task):
@@ -335,5 +338,12 @@ class InstallGrub_2(Task):
 
     @classmethod
     def run(cls, info):
-        log_check_call(['chroot', info.root, 'grub-install', info.volume.device_path])
+        if info.manifest.system['boottype'] == 'efi':
+            log_check_call(['chroot', info.root, 'grub-install',
+                           '--efi-directory', '/boot',
+                           '--no-nvram',
+                            info.volume.device_path])
+        else:
+            log_check_call(['chroot', info.root, 'grub-install',
+                           info.volume.device_path])
         log_check_call(['chroot', info.root, 'update-grub'])
